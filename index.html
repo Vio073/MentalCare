@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentalCare - Pusat Informasi Kesehatan Mental</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span>MentalCare</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#articles" class="nav-link">Artikel</a></li>
+                <li><a href="#assessment" class="nav-link">Tes Kesehatan Mental</a></li>
+                <li><a href="#consultation" class="nav-link">Konsultasi</a></li>
+                <li><a href="#resources" class="nav-link">Sumber Daya</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Kesehatan Mental Anda Adalah Prioritas</h1>
+                <p>Platform terpercaya untuk informasi, konsultasi, dan dukungan kesehatan mental. Kami hadir untuk membantu Anda menjalani hidup yang lebih sehat dan bahagia.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('assessment')">
+                        <i class="fas fa-clipboard-check"></i>
+                        Tes Kesehatan Mental
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('consultation')">
+                        <i class="fas fa-comments"></i>
+                        Konsultasi Sekarang
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10000">0</div>
+                    <div class="stat-label">Pengguna Terdaftar</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Artikel Kesehatan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Psikolog Berpengalaman</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="95">0</div>
+                    <div class="stat-label">% Kepuasan Pengguna</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="articles">
+        <div class="container">
+            <h2 class="section-title">Artikel Terbaru</h2>
+            <div class="articles-filter">
+                <button class="filter-btn active" data-category="all">Semua</button>
+                <button class="filter-btn" data-category="anxiety">Kecemasan</button>
+                <button class="filter-btn" data-category="depression">Depresi</button>
+                <button class="filter-btn" data-category="stress">Stres</button>
+                <button class="filter-btn" data-category="self-care">Perawatan Diri</button>
+            </div>
+            <div class="articles-grid" id="articlesGrid">
+                <!-- Articles will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Mental Health Assessment -->
+    <section id="assessment" class="assessment">
+        <div class="container">
+            <h2 class="section-title">Tes Kesehatan Mental</h2>
+            <div class="assessment-intro">
+                <p>Evaluasi kondisi kesehatan mental Anda dengan tes yang telah tervalidasi secara klinis.</p>
+            </div>
+            <div class="assessment-types">
+                <div class="assessment-card" onclick="startAssessment('anxiety')">
+                    <div class="assessment-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Tes Kecemasan (GAD-7)</h3>
+                    <p>Evaluasi tingkat kecemasan dalam 2 minggu terakhir</p>
+                    <div class="assessment-duration">
+                        <i class="fas fa-clock"></i>
+                        <span>3-5 menit</span>
+                    </div>
+                </div>
+                <div class="assessment-card" onclick="startAssessment('depression')">
+                    <div class="assessment-icon">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <h3>Tes Depresi (PHQ-9)</h3>
+                    <p>Screening untuk gejala depresi dan mood</p>
+                    <div class="assessment-duration">
+                        <i class="fas fa-clock"></i>
+                        <span>5-7 menit</span>
+                    </div>
+                </div>
+                <div class="assessment-card" onclick="startAssessment('stress')">
+                    <div class="assessment-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Tes Stres</h3>
+                    <p>Mengukur tingkat stres dalam kehidupan sehari-hari</p>
+                    <div class="assessment-duration">
+                        <i class="fas fa-clock"></i>
+                        <span>4-6 menit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Modal -->
+    <div id="assessmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="assessmentTitle">Tes Kesehatan Mental</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="assessmentContent">
+                    <div class="progress-bar">
+                        <div class="progress" id="assessmentProgress"></div>
+                    </div>
+                    <div class="question-counter">
+                        <span id="currentQuestion">1</span> dari <span id="totalQuestions">7</span>
+                    </div>
+                    <div class="question-card">
+                        <h4 id="questionText"></h4>
+                        <div class="answer-options" id="answerOptions">
+                            <!-- Options will be loaded dynamically -->
+                        </div>
+                    </div>
+                    <div class="assessment-navigation">
+                        <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Sebelumnya</button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Selanjutnya</button>
+                    </div>
+                </div>
+                <div id="assessmentResult" class="result-section" style="display: none;">
+                    <div class="result-header">
+                        <div class="result-icon" id="resultIcon"></div>
+                        <h3 id="resultTitle"></h3>
+                        <div class="result-score" id="resultScore"></div>
+                    </div>
+                    <div class="result-description" id="resultDescription"></div>
+                    <div class="result-recommendations" id="resultRecommendations"></div>
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="bookConsultation()">Konsultasi dengan Ahli</button>
+                        <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Consultation Section -->
+    <section id="consultation" class="consultation">
+        <div class="container">
+            <h2 class="section-title">Konsultasi Online</h2>
+            <div class="consultation-grid">
+                <div class="consultation-info">
+                    <h3>Konsultasi dengan Psikolog Berpengalaman</h3>
+                    <div class="consultation-features">
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>Privasi Terjamin</h4>
+                                <p>Semua konsultasi bersifat rahasia dan aman</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Fleksibel 24/7</h4>
+                                <p>Tersedia kapan saja sesuai kebutuhan Anda</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <h4>Psikolog Tersertifikasi</h4>
+                                <p>Ditangani oleh profesional berlisensi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="consultation-form">
+                    <form id="consultationForm">
+                        <h3>Jadwalkan Konsultasi</h3>
+                        <div class="form-group">
+                            <label for="fullName">Nama Lengkap</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="consultationType">Jenis Konsultasi</label>
+                            <select id="consultationType" name="consultationType" required>
+                                <option value="">Pilih jenis konsultasi</option>
+                                <option value="individual">Konsultasi Individual</option>
+                                <option value="couple">Konsultasi Pasangan</option>
+                                <option value="family">Konsultasi Keluarga</option>
+                                <option value="group">Konsultasi Grup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredDate">Tanggal Preferensi</label>
+                            <input type="date" id="preferredDate" name="preferredDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredTime">Waktu Preferensi</label>
+                            <select id="preferredTime" name="preferredTime" required>
+                                <option value="">Pilih waktu</option>
+                                <option value="09:00">09:00 - 10:00</option>
+                                <option value="10:00">10:00 - 11:00</option>
+                                <option value="11:00">11:00 - 12:00</option>
+                                <option value="13:00">13:00 - 14:00</option>
+                                <option value="14:00">14:00 - 15:00</option>
+                                <option value="15:00">15:00 - 16:00</option>
+                                <option value="16:00">16:00 - 17:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="concerns">Keluhan/Masalah yang Ingin Dikonsultasikan</label>
+                            <textarea id="concerns" name="concerns" rows="4" placeholder="Jelaskan secara singkat masalah yang ingin Anda konsultasikan..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Jadwalkan Konsultasi
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources">
+        <div class="container">
+            <h2 class="section-title">Sumber Daya & Dukungan</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Hotline Krisis</h3>
+                    <p>Layanan darurat 24/7 untuk situasi krisis mental</p>
+                    <div class="resource-contact">
+                        <strong>119 ext 8</strong>
+                        <br>
+                        <small>Bebas pulsa</small>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Support Group</h3>
+                    <p>Bergabung dengan komunitas support group online</p>
+                    <button class="btn btn-outline">Gabung Sekarang</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Pusat Kesehatan Mental</h3>
+                    <p>Temukan klinik dan rumah sakit terdekat</p>
+                    <button class="btn btn-outline" onclick="findNearestCenter()">Cari Lokasi</button>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Panduan Self-Care</h3>
+                    <p>Download panduan perawatan diri untuk kesehatan mental</p>
+                    <button class="btn btn-outline">Download PDF</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Jl. Kesehatan Mental No. 123<br>Jakarta Pusat, DKI Jakarta 10110</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telepon</h4>
+                            <p>(021) 123-4567<br>+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@mentalcare.id<br>support@mentalcare.id</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Jumat: 08:00 - 17:00<br>Sabtu: 09:00 - 15:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <h3>Kirim Pesan</h3>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" placeholder="Subjek" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="5" placeholder="Pesan Anda" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-brain"></i>
+                        <span>MentalCare</span>
+                    </div>
+                    <p>Platform terpercaya untuk kesehatan mental Indonesia. Kami berkomitmen memberikan dukungan terbaik untuk kesejahteraan mental Anda.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#assessment">Tes Kesehatan Mental</a></li>
+                        <li><a href="#consultation">Konsultasi Online</a></li>
+                        <li><a href="#articles">Artikel & Tips</a></li>
+                        <li><a href="#resources">Sumber Daya</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Tim Ahli</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontak Darurat</h4>
+                    <div class="emergency-contacts">
+                        <div class="emergency-item">
+                            <strong>Hotline Krisis:</strong>
+                            <span>119 ext 8</span>
+                        </div>
+                        <div class="emergency-item">
+                            <strong>WhatsApp:</strong>
+                            <span>+62 812-1234-5678</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MentalCare. Seluruh hak cipta dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="toggleChatBot()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chat Bot -->
+    <div id="chatBot" class="chat-bot">
+        <div class="chat-header">
+            <h4>Asisten Virtual</h4>
+            <button onclick="toggleChatBot()">&times;</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot">
+                <p>Halo! Saya adalah asisten virtual MentalCare. Ada yang bisa saya bantu hari ini?</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Ketik pesan Anda...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
